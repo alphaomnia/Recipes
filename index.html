@@ -137,6 +137,10 @@ var SEED=[
  {id:"onion-soup",name:"Onion soup",cat:"Soups",serves:"4",
   ingredients:["1 tbsp olive oil","10 medium onions, thinly sliced","1 tbsp water","1 tsp dried thyme","1/4 tsp ground pepper","1/4 cup port wine or sherry","5 cups low sodium vegetable broth","2 tbsp balsamic vinegar"],
   steps:["Preheat the oven to 450 F (about 230 C). In a large Dutch oven, add the oil, onions, 1 tbsp water, thyme and pepper. Cover and bake for 30 minutes, until the onions are soft and starting to turn brown.","Uncover and cook for another 30 minutes or so, until the onions are golden brown and caramelised.","Move the Dutch oven to the stove on medium heat. Add the wine and scrape the bottom and sides of the pan to release any browned bits.","Cook until the mixture is slightly thickened. Add the broth and vinegar. Bring to the boil, then reduce the heat and simmer for about 15 minutes, until the liquid has darkened.","Remove from the heat and serve."],
+  notes:""},
+ {id:"cauliflower-soup",name:"Cauliflower soup",cat:"Soups",serves:"",
+  ingredients:["2 tbsp extra virgin olive oil","1 large brown or yellow onion, roughly chopped","3 cloves garlic, peeled and chopped","500 g (17 oz) cauliflower, divided into florets","2 medium potatoes, peeled and chopped","3 cups (750 ml) vegetable stock","2 tsp fresh thyme leaves","Sea salt and black pepper to taste","1/4 cup fresh parsley leaves","To garnish (optional): fresh parsley leaves","To garnish (optional): finely grated lemon zest"],
+  steps:["Heat the olive oil in a large saucepan over medium heat.","Saute the onion for about 5 minutes, stirring occasionally. Do not let it colour.","Add the garlic and saute for about 2 minutes. Be careful it does not burn.","Add the cauliflower, potato, vegetable stock and thyme leaves. Season with salt and freshly ground black pepper.","Bring to the boil, then reduce the heat and simmer for 15 minutes, or until the vegetables are tender.","Remove from the heat and add the parsley leaves.","Puree until smooth with a hand mixer or in a blender.","Reheat in the saucepan and season to taste with salt and pepper.","Top each bowl with a little finely grated lemon zest and some chopped parsley."],
   notes:""}
 ];
 var recipes=[];
@@ -328,7 +332,7 @@ document.addEventListener("submit",function(e){
   if(d.isNew){rec.id=slug(name);recipes.push(rec)}else{recipes[recipes.indexOf(find(d.id))]=rec}
   save();st.id=rec.id;toast("Saved");go("detail");
 });
-var VERSION="1.0.3";
+var VERSION="1.0.4";
 var newest="";
 function checkUpdate(){
   try{
