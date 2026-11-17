@@ -152,7 +152,9 @@ var SEED=[
  {"id": "vegan-bolognese", "name": "Vegan bolognese", "cat": "Mains", "serves": "", "ingredients": ["1 onion", "1 cup green lentils", "Half a jar of tomato sauce", "2 cups water", "1 tsp salt", "1 tsp cumin", "1 tsp black pepper", "1/2 tsp chilli powder", "3 sprigs parsley"], "steps": [], "notes": ""},
  {"id": "tomato-sauce-long-storage", "name": "Tomato sauce for long storage", "cat": "Preserves", "serves": "3 large glass jars", "ingredients": ["2.5 kg tomatoes", "80 g onion", "Salt", "Basil"], "steps": ["Chop the onions and cook them.", "Wash and chop the tomatoes, skins on.", "Cook the tomatoes with the onion.", "Add salt.", "Cook for about 2 to 3 hours on a slow heat.", "Once done, prepare warm, clean jars.", "Chop some basil and add it as you pour the sauce into the jars."], "notes": ""},
  {"id": "hummus", "name": "Hummus", "cat": "Sauces", "serves": "", "ingredients": ["850.49 g can garbanzo beans (chickpeas)", "1/2 cup tahini, or 4 to 8 tbsp", "1/2 cup lemon juice", "4 tsp olive oil", "2 cloves garlic, crushed", "1/2 tsp paprika", "1/2 tsp cumin", "1 tsp salt, plus more to taste", "2 tbsp chopped fresh parsley (optional)"], "steps": ["Drain the beans, but keep 1/2 cup of the liquid. Set it aside with a few extra beans for topping.", "In a blender or food processor, puree the tahini with the lemon juice until nice and smooth.", "Add the olive oil, garlic, paprika, cumin and salt, and puree.", "Add half of the beans and puree.", "Add the other half of the beans and puree.", "Add the reserved bean liquid 1 tbsp at a time until you are happy with the consistency. You probably won't use it all.", "Optional: add some parsley and pulse.", "Refrigerate for 2 hours.", "Top with whole beans, parsley, a drizzle of olive oil and a sprinkle of paprika. Serve with pita bread, chips, veggies or anything else you love."], "notes": ""},
- {"id": "pesto-genovese", "name": "Pesto Genovese", "cat": "Sauces", "serves": "", "ingredients": ["50 g basil (about 60 to 65 leaves)", "1/2 cup extra virgin olive oil", "70 g Parmigiano Reggiano (about 3/4 cup)", "30 g Pecorino Fiore Sardo (about 2 tbsp)", "2 cloves garlic, peeled", "15 g pine nuts (about 1 tbsp)", "4 to 5 g coarse salt"], "steps": [], "notes": ""}
+ {"id": "pesto-genovese", "name": "Pesto Genovese", "cat": "Sauces", "serves": "", "ingredients": ["50 g basil (about 60 to 65 leaves)", "1/2 cup extra virgin olive oil", "70 g Parmigiano Reggiano (about 3/4 cup)", "30 g Pecorino Fiore Sardo (about 2 tbsp)", "2 cloves garlic, peeled", "15 g pine nuts (about 1 tbsp)", "4 to 5 g coarse salt"], "steps": [], "notes": ""},
+ {"id": "hummus-tal-ful", "name": "Hummus tal ful", "cat": "Sauces", "serves": "", "ingredients": ["400 g ful", "1/2 cup water", "2 tbsp tahini", "2 tsp olive oil", "1 tsp crushed garlic", "1/2 tsp paprika", "1/2 tsp cumin", "1 tsp salt", "Chopped parsley", "Squeeze of lemon"], "steps": [], "notes": "Version 1. See also version 2, which uses less ful and more tahini."},
+ {"id": "hummus-tal-ful-v2", "name": "Hummus tal ful, version 2", "cat": "Sauces", "serves": "", "ingredients": ["300 g ful", "1/4 cup water", "5 tbsp tahini", "3 tsp olive oil", "1 tsp crushed garlic", "1/4 tsp paprika", "1/4 tsp cumin", "1/2 tsp salt", "Chopped parsley", "Squeeze of lemon"], "steps": [], "notes": "Version 2. Compare with version 1, which uses more ful and less tahini."}
 ];
 var recipes=[];
 function load(){
@@ -343,7 +345,7 @@ document.addEventListener("submit",function(e){
   if(d.isNew){rec.id=slug(name);recipes.push(rec)}else{recipes[recipes.indexOf(find(d.id))]=rec}
   save();st.id=rec.id;toast("Saved");go("detail");
 });
-var VERSION="1.0.12";
+var VERSION="1.0.13";
 var newest="";
 function checkUpdate(){
   try{
