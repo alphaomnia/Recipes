@@ -141,6 +141,10 @@ var SEED=[
  {id:"cauliflower-soup",name:"Cauliflower soup",cat:"Soups",serves:"",
   ingredients:["2 tbsp extra virgin olive oil","1 large brown or yellow onion, roughly chopped","3 cloves garlic, peeled and chopped","500 g (17 oz) cauliflower, divided into florets","2 medium potatoes, peeled and chopped","3 cups (750 ml) vegetable stock","2 tsp fresh thyme leaves","Sea salt and black pepper to taste","1/4 cup fresh parsley leaves","To garnish (optional): fresh parsley leaves","To garnish (optional): finely grated lemon zest"],
   steps:["Heat the olive oil in a large saucepan over medium heat.","Saute the onion for about 5 minutes, stirring occasionally. Do not let it colour.","Add the garlic and saute for about 2 minutes. Be careful it does not burn.","Add the cauliflower, potato, vegetable stock and thyme leaves. Season with salt and freshly ground black pepper.","Bring to the boil, then reduce the heat and simmer for 15 minutes, or until the vegetables are tender.","Remove from the heat and add the parsley leaves.","Puree until smooth with a hand mixer or in a blender.","Reheat in the saucepan and season to taste with salt and pepper.","Top each bowl with a little finely grated lemon zest and some chopped parsley."],
+  notes:""},
+ {id:"carrot-soup",name:"Carrot soup",cat:"Soups",serves:"4",
+  ingredients:["454 g carrots","2 tbsp extra virgin olive oil","2 garlic cloves","1/4 tsp ginger","1 tsp turmeric","0.59 litres vegetable broth","2 tbsp nut butter (peanut or cashew)","1 lime","Sour cream to garnish (optional)"],
+  steps:["In a medium pot, add the olive oil, garlic, ginger and turmeric. Heat for a few minutes, then add the carrots.","Let the carrots become fully coated in the oil and spice mixture, then add the vegetable broth.","Cook for about 20 minutes, or until the carrots are tender.","Add the nut butter and the lime juice. Cook for another 2 to 3 minutes, then remove from the heat.","Puree with an immersion blender into a creamy soup.","Serve hot, with a dollop of sour cream if you like."],
   notes:""}
 ];
 var recipes=[];
@@ -332,7 +336,7 @@ document.addEventListener("submit",function(e){
   if(d.isNew){rec.id=slug(name);recipes.push(rec)}else{recipes[recipes.indexOf(find(d.id))]=rec}
   save();st.id=rec.id;toast("Saved");go("detail");
 });
-var VERSION="1.0.4";
+var VERSION="1.0.5";
 var newest="";
 function checkUpdate(){
   try{
