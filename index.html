@@ -133,6 +133,10 @@ var SEED=[
  {id:"mushroom-soup",name:"Mushroom soup",cat:"Soups",serves:"",
   ingredients:["1/2 tbsp olive oil","454 g mushrooms","8 cloves garlic","1/2 onion","1 tsp sea salt","1/2 tsp ground black pepper","0.71 litres vegetable broth","1 can coconut milk","4 sprigs thyme","1 spoon Provençale herbs (cuisine provençale)","1 small potato"],
   steps:["Cook the onion, garlic and mushrooms until translucent, about 8 minutes.","Pour in the broth, coconut milk and herbs. Bring to the boil, then simmer for about 15 minutes."],
+  notes:""},
+ {id:"onion-soup",name:"Onion soup",cat:"Soups",serves:"4",
+  ingredients:["1 tbsp olive oil","10 medium onions, thinly sliced","1 tbsp water","1 tsp dried thyme","1/4 tsp ground pepper","1/4 cup port wine or sherry","5 cups low sodium vegetable broth","2 tbsp balsamic vinegar"],
+  steps:["Preheat the oven to 450 F (about 230 C). In a large Dutch oven, add the oil, onions, 1 tbsp water, thyme and pepper. Cover and bake for 30 minutes, until the onions are soft and starting to turn brown.","Uncover and cook for another 30 minutes or so, until the onions are golden brown and caramelised.","Move the Dutch oven to the stove on medium heat. Add the wine and scrape the bottom and sides of the pan to release any browned bits.","Cook until the mixture is slightly thickened. Add the broth and vinegar. Bring to the boil, then reduce the heat and simmer for about 15 minutes, until the liquid has darkened.","Remove from the heat and serve."],
   notes:""}
 ];
 var recipes=[];
@@ -324,7 +328,7 @@ document.addEventListener("submit",function(e){
   if(d.isNew){rec.id=slug(name);recipes.push(rec)}else{recipes[recipes.indexOf(find(d.id))]=rec}
   save();st.id=rec.id;toast("Saved");go("detail");
 });
-var VERSION="1.0.2";
+var VERSION="1.0.3";
 var newest="";
 function checkUpdate(){
   try{
