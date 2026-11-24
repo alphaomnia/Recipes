@@ -51,11 +51,11 @@ main{max-width:640px;margin:0 auto;padding:16px}
 .search{position:relative}
 .search input{width:100%;height:50px;border-radius:14px;border:1px solid var(--line);background:var(--surface);padding:0 44px 0 16px;font-size:17px}
 .search button{position:absolute;right:4px;top:4px;width:42px;height:42px;border:0;background:transparent;color:var(--muted);font-size:22px}
-.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;margin:0 -16px;padding-left:16px;padding-right:16px;scrollbar-width:none}
-.chips::-webkit-scrollbar{display:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:12px 0 4px}
 .chip{flex:none;height:38px;padding:0 14px;border-radius:19px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:15px;white-space:nowrap}
 .chip b{font-weight:400;color:var(--muted);margin-left:6px;font-variant-numeric:tabular-nums}
 .chip[aria-pressed="true"]{background:var(--olive);border-color:var(--olive);color:var(--on-olive)}
+.chip.more{appearance:none;-webkit-appearance:none;padding:0 28px 0 14px;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 15px) 16px,calc(100% - 10px) 16px;background-size:5px 5px;background-repeat:no-repeat}
 .chip[aria-pressed="true"] b{color:var(--on-olive);opacity:.8}
 .count{font-size:14px;color:var(--muted);margin:14px 2px 6px}
 .list{border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
@@ -226,11 +226,17 @@ function renderTop(){
 }
 
 function viewList(){
-  var cats=["All"].concat(CATS.filter(function(c){return recipes.some(function(r){return r.cat===c})}));
-  var chips=cats.map(function(c){
-    var n=c==="All"?recipes.length:recipes.filter(function(r){return r.cat===c}).length;
-    return '<button class="chip" data-cat="'+esc(c)+'" aria-pressed="'+(st.cat===c)+'">'+esc(c)+'<b>'+n+'</b></button>';
+  var counts={};recipes.forEach(function(r){counts[r.cat]=(counts[r.cat]||0)+1});
+  var used=CATS.filter(function(c){return counts[c]});
+  var ranked=used.slice().sort(function(x,y){return counts[y]-counts[x]||used.indexOf(x)-used.indexOf(y)});
+  var top3=ranked.slice(0,3),rest=ranked.slice(3).sort(function(x,y){return x.localeCompare(y)});
+  var chips=[["All",recipes.length]].concat(top3.map(function(c){return [c,counts[c]]})).map(function(p){
+    return '<button class="chip" data-cat="'+esc(p[0])+'" aria-pressed="'+(st.cat===p[0])+'">'+esc(p[0])+'<b>'+p[1]+'</b></button>';
   }).join("");
+  if(rest.length){
+    var on=rest.indexOf(st.cat)>-1;
+    chips+='<select class="chip more" id="more" aria-label="More categories" aria-pressed="'+on+'"><option value=""'+(on?'':' selected')+'>More</option>'+rest.map(function(c){return '<option value="'+esc(c)+'"'+(st.cat===c?' selected':'')+'>'+esc(c)+' ('+counts[c]+')</option>'}).join("")+'</select>';
+  }
   var list=filtered();
   var rows=list.map(function(r){
     return '<button class="row" data-open="'+esc(r.id)+'"><span class="t"><span class="n">'+esc(r.name)+'</span><br><span class="m">'+esc(r.cat)+(r.serves?' &middot; '+esc(r.serves):'')+'</span></span><span class="go" aria-hidden="true">&rsaquo;</span></button>';
@@ -339,6 +345,9 @@ document.addEventListener("click",function(e){
     return;
   }
 });
+document.addEventListener("change",function(e){
+  if(e.target.id==="more"){st.cat=e.target.value||"All";render()}
+});
 document.addEventListener("input",function(e){
   if(e.target.id==="q"){st.q=e.target.value;refreshResults()}
 });
@@ -354,7 +363,7 @@ document.addEventListener("submit",function(e){
   if(d.isNew){rec.id=slug(name);recipes.push(rec)}else{recipes[recipes.indexOf(find(d.id))]=rec}
   save();st.id=rec.id;toast("Saved");go("detail");
 });
-var VERSION="1.0.22";
+var VERSION="1.0.23";
 var newest="";
 function checkUpdate(){
   try{
